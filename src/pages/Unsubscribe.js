@@ -5,6 +5,7 @@ export default function Unsubscribe() {
   const [searchParams] = useSearchParams();
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const e = searchParams.get("email");
@@ -13,16 +14,22 @@ export default function Unsubscribe() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Replace with your real API endpoint
-    await fetch(
-      "https://bhek6yajdg.execute-api.eu-west-2.amazonaws.com/unsubscribe",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      }
-    );
-    setSubmitted(true);
+    setLoading(true);
+    try {
+      await fetch(
+        "https://bhek6yajdg.execute-api.eu-west-2.amazonaws.com/unsubscribe/",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
+      setSubmitted(true);
+    } catch (error) {
+      console.error("Unsubscribe failed", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -71,17 +78,18 @@ export default function Unsubscribe() {
               <br />
               <button
                 type="submit"
+                disabled={loading}
                 style={{
                   padding: "12px 24px",
-                  backgroundColor: "#008bd2",
+                  backgroundColor: loading ? "#444" : "#008bd2",
                   color: "#ffffff",
                   fontSize: "16px",
                   border: "2px solid #008bd2",
                   borderRadius: "4px",
-                  cursor: "pointer",
+                  cursor: loading ? "default" : "pointer",
                 }}
               >
-                Unsubscribe Me
+                {loading ? "Unsubscribing..." : "Unsubscribe Me"}
               </button>
             </form>
           </>
