@@ -17,7 +17,7 @@ export default function Unsubscribe() {
     setLoading(true);
     try {
       await fetch(
-        "https://bhek6yajdg.execute-api.eu-west-2.amazonaws.com/unsubscribe",
+        "https://bhek6yajdg.execute-api.eu-west-2.amazonaws.com/unsubscribe/tyrolitunsubscribe",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
