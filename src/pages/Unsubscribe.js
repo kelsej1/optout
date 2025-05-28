@@ -17,7 +17,7 @@ export default function Unsubscribe() {
     setLoading(true);
     try {
       await fetch(
-        "https://bhek6yajdg.execute-api.eu-west-2.amazonaws.com/unsubscribe/",
+        "https://bhek6yajdg.execute-api.eu-west-2.amazonaws.com/unsubscribe",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -102,7 +102,7 @@ export default function Unsubscribe() {
         {/* Footer */}
         <div style={{ marginTop: "60px", fontSize: "12px", color: "#888888" }}>
           © 2025 Tyrolit – Schleifmittelwerke Swarovski AG & Co K.G. All rights
-          reserved
+          reserved.
         </div>
       </div>
     </div>
