@@ -14,11 +14,14 @@ export default function Unsubscribe() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Replace with your real API endpoint
-    await fetch("https://your-api/unsubscribe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
+    await fetch(
+      "https://bhek6yajdg.execute-api.eu-west-2.amazonaws.com/unsubscribe",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      }
+    );
     setSubmitted(true);
   };
 
